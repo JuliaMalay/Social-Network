@@ -2,6 +2,10 @@
   grid-area: nav;
   background-color: rgb(255, 175, 175);
 }
-.item {
+.item a {
   color: red;
+  text-decoration: none;
+}
+.item a.activeLink {
+  color: blue;
 }
