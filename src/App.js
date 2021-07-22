@@ -13,17 +13,31 @@ const App = (props) => {
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
-        <Navbar />
+        <Navbar friends={props.state.sideBar.friends} />
         <div className="app-wrapper-content">
           <Route
             path="/dialogs"
             render={() => (
-              <Dialogs dialogs={props.dialogs} messages={props.messages} />
+              <Dialogs
+                dialogs={props.state.dialogPage.dialogs}
+                messages={props.state.dialogPage.messages}
+                newMessageText={props.state.dialogPage.newMessageText}
+                dispatch={props.dispatch}
+                // addMessage={props.addMessage}
+                // updateNewMessageText={props.updateNewMessageText}
+              />
             )}
           />
           <Route
             path="/profile"
-            render={() => <Profile posts={props.posts} />}
+            render={() => (
+              <Profile
+                profilePage={props.state.profilePage}
+                dispatch={props.dispatch}
+                // addPost={props.addPost}
+                // updateNewPostText={props.updateNewPostText}
+              />
+            )}
           />
           <Route
             path="/news"
