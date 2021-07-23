@@ -5,7 +5,7 @@ import Message from './Message/Message';
 import {
   addMessageActionCreator,
   updateNewMessageTextActionCreator,
-} from '../../redux/state';
+} from '../../redux/dialogReducer';
 
 const Dialogs = (props) => {
   console.log(props);
@@ -17,13 +17,12 @@ const Dialogs = (props) => {
     return <Message message={message.message} />;
   });
 
-  let newMessageElement = React.createRef();
   const addMessage = () => {
     // props.addMessage();
     props.dispatch(addMessageActionCreator());
   };
-  const onMessageChange = () => {
-    let text = newMessageElement.current.value;
+  const onMessageChange = (event) => {
+    let text = event.target.value;
     // props.updateNewMessageText(text);
     props.dispatch(updateNewMessageTextActionCreator(text));
   };
@@ -34,7 +33,6 @@ const Dialogs = (props) => {
       <div className={classes.messages}>{messagesElements}</div>
       <div>
         <textarea
-          ref={newMessageElement}
           onChange={onMessageChange}
           value={props.newMessageText}
         ></textarea>
